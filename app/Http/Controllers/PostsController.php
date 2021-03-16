@@ -20,4 +20,13 @@ class PostsController extends Controller
             return response()->json(['err'=>$validator->errors()]);
         }
     }
+    public function show($id) {
+        $query=Posts::where("id","=",$id)->first();
+        if ($query) {
+            $query->views+=1;
+            $query->save();
+            return response()->json($query);
+        }
+        return response('',404);
+    }
 }

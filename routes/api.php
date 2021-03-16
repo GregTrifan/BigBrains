@@ -19,5 +19,6 @@ Route::group([
     "as"=>"posts"
 ], function () {
     Route::get('/',[PostsController::class, 'index'])->name("show");
-    Route::post('/add',[ProductController::class,"create"])->name("add");
+    Route::post('/add',[ProductController::class,'create'])->name("add");
+    Route::get('/show/{id}',[PostsController::class, 'show'])->name("show")->where("id","\d+");
 });

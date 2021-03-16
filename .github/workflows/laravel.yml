@@ -29,5 +29,7 @@ jobs:
           touch database/database.sqlite
       - name: Seed Database
         run: php artisan db:seed
+      - name: Clean cache
+        run: php artisan config:cache
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: vendor/bin/phpunit

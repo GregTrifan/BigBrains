@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([
+    "prefix"=>"/posts",
+    "as"=>"posts"
+], function () {
+    Route::get('/',[PostsController::class, 'index'])->name("show");
+    Route::post('/add',[ProductController::class,"create"])->name("add");
 });

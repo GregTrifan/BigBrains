@@ -44,7 +44,7 @@ return [
         ],
         'testing' => [
             'driver' => 'sqlite',
-            'database' => database_path('database/database.sqlite'),
+            'database' => database_path('database.sqlite'),
             'prefix' => '',
         ],
         'mysql' => [

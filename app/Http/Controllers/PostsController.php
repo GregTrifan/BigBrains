@@ -17,11 +17,14 @@ class PostsController extends Controller
             'content'=> 'required'
         ]);
         if($validator->fails()) {
-            return response()->json(['err'=>$validator->errors()]);
+            return response()->json(['err'=>$validator->errors()],400);
         }
+        $input = $request->all();
+        $post=Posts::create($input);
+        return response()->json(["status"=>"Post uploaded sucessfully","id"=>$post->id]);
     }
     public function show($id) {
-        $query=Posts::where("id","=",$id)->first();
+        $query=Posts::select("title","content","votes","views")->where("id","=",$id)->first();
         if ($query) {
             $query->views+=1;
             $query->save();

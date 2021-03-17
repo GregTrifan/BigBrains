@@ -17,7 +17,7 @@ const Navbar = () => {
             mb={8}
             p={8}
             color="teal.400"
-            bg={useColorModeValue("white", "#0A0D12")}
+            bg={useColorModeValue("gray.200", "#0A0D12")}
         >
             <Text
                 fontSize="3xl"

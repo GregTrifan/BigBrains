@@ -5,6 +5,6 @@ import Navbar from "./Navbar";
 describe("Navbar Tests", () => {
     it("Contains Title", () => {
         const wrapper = shallow(<Navbar />);
-        expect(wrapper.contains("BigBrains")).toBeTruthy();
+        expect(wrapper.contains("BigBrain")).toBeTruthy();
     });
 });

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SpaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,15 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::fallback([SpaController::class,'lost'])->name("lost");
 Route::group([
     "as"=>"spa"
 ], function () {
-    //TODO: Reimplement using a controller
-    Route::get('/', function () {
-    return view('spa');
-    });
-    Route::get('/about', function() {
-        return view('spa');
-    });
+    Route::get('/', [SpaController::class,'index'])->name("index");
+    Route::get('/about',[SpaController::class,'about'])->name("about");
 });

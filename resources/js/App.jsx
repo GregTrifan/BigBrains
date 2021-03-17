@@ -1,62 +1,20 @@
 import React from "react";
-import {
-    Stack,
-    Button,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-    Portal,
-    Box,
-    useToast,
-    useColorMode,
-    useColorModeValue,
-    DarkMode,
-} from "@chakra-ui/react";
-import { AiOutlineMenu } from "react-icons/ai";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Main from "./components/Main";
+import Home from "./routes/Home";
+import About from "./routes/About";
+import NotFound from "./routes/NotFound";
 const App = () => {
-    const { colorMode, toggleColorMode } = useColorMode();
-    const toast = useToast();
-    const Cucurigu = () => {
-        toast({
-            title: "🐓🐓🐓🐓🐓🐓🐓",
-            description: "Cucurigu boieri mari dati punguta cu 2 bani",
-            status: "success",
-            duration: 6000,
-            isClosable: false,
-        });
-    };
     return (
-        <div>
-            <DarkMode>
-                <Box w="100%" p={4} bg="gray.900" color="white">
-                    <Menu>
-                        <MenuButton as={Button}>
-                            <AiOutlineMenu />
-                        </MenuButton>
-                        <Portal>
-                            <MenuList color="#FFFFFF" m={0}>
-                                <MenuItem onClick={Cucurigu}>
-                                    Big Cock
-                                    <span role="img" aria-label="cocks">
-                                        {" "}
-                                        🐓🐓🐓🐓
-                                    </span>
-                                </MenuItem>
-                                <MenuItem onClick={toggleColorMode}>
-                                    {colorMode === "light"
-                                        ? "Go Dark 🌙"
-                                        : "Go Light 🌞"}
-                                </MenuItem>
-                            </MenuList>
-                        </Portal>
-                    </Menu>
-                </Box>
-            </DarkMode>
-            <Box textAlign="center" justifyContent="center">
-                edr
-            </Box>
-        </div>
+        <Router>
+            <Main>
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/about" component={About} />
+                    <Route component={NotFound} />
+                </Switch>
+            </Main>
+        </Router>
     );
 };
 export default App;

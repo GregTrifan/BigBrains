@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+
+Route::group([
+    "as"=>"spa"
+], function () {
+    //TODO: Reimplement using a controller
+    Route::get('/', function () {
     return view('spa');
+    });
+    Route::get('/about', function() {
+        return view('spa');
+    });
 });

@@ -29,6 +29,7 @@
         "@emotion/react": "^11.1.5",
         "@emotion/styled": "^11.1.5",
         "framer-motion": "^3.10.5",
-        "react-icons": "^4.2.0"
+        "react-icons": "^4.2.0",
+        "react-router-dom": "^5.2.0"
     }
 }

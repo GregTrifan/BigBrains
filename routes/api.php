@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostsController;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,10 +15,10 @@ use App\Http\Controllers\PostsController;
 */
 
 Route::group([
-    "prefix"=>"/posts",
-    "as"=>"posts"
+    "prefix" => "/posts",
+    "as" => "posts"
 ], function () {
-    Route::get('/',[PostsController::class, 'index'])->name("show");
-    Route::post('/add',[PostsController::class,'create'])->name("add");
-    Route::get('/show/{id}',[PostsController::class, 'show'])->name("show")->where("id","\d+");
+    Route::get('/', [PostController::class, 'index'])->name("show");
+    Route::post('/add', [PostController::class, 'create'])->name("add");
+    Route::get('/show/{id}', [PostController::class, 'show'])->name("show")->where("id", "\d+");
 });

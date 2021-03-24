@@ -1,12 +1,14 @@
 import React from "react";
-import { Text, Flex } from "@chakra-ui/layout";
+import { Flex } from "@chakra-ui/layout";
 import MenuToggle from "./MenuToggle";
 import MenuLinks from "./MenuLinks";
 import { useColorModeValue } from "@chakra-ui/color-mode";
+import { Img } from "@chakra-ui/react"
+
 const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
-
     const toggle = () => setIsOpen(!isOpen);
+    const img=useColorModeValue("blogo.png","wlogo.png");
 
     return (
         <Flex
@@ -16,19 +18,8 @@ const Navbar = () => {
             w="100%"
             mb={8}
             p={8}
-            color="teal.400"
-            bg={useColorModeValue("gray.200", "#0A0D12")}
         >
-            <Text
-                fontSize="3xl"
-                bgClip="text"
-                bgGradient={useColorModeValue(
-                    "linear(to-l, blue.500, teal.400)",
-                    "linear(to-l,blue.300, teal.500)"
-                )}
-            >
-                BigBrain
-            </Text>
+            <Img  src={img} objectFit="cover"  height="50px" alt="logo"/>
             <MenuToggle toggle={toggle} isOpen={isOpen} />
             <MenuLinks isOpen={isOpen} toggle={toggle} />
         </Flex>

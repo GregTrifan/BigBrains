@@ -11,6 +11,7 @@ const components = {
             dialog: {
                 bg: mode("gray.200", "#141214")(props),
                 color: "teal.400",
+
             },
         }),
     },

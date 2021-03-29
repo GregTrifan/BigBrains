@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,4 +23,10 @@ Route::group([
     Route::get('/', [PostController::class, 'index'])->name("show");
     Route::post('/add', [PostController::class, 'create'])->name("add");
     Route::get('/show/{id}', [PostController::class, 'show'])->name("show")->where("id", "\d+");
+});
+Route::group([
+    "as" => "user"
+], function () {
+    Route::post('/login', [UserController::class, 'login'])->name("login");
+    Route::post('/register', [UserController::class, 'register'])->name("register");
 });

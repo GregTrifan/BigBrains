@@ -11,12 +11,13 @@ import {
     Button
 } from "@chakra-ui/react";
 import ThemeToggler from "./ThemeToggler";
+
 const MenuLinks = ({ isOpen, toggle }) => {
     const Links = () => (
         <>
             <Link to="/">Acasa</Link>
             <Link to="/about">Despre noi</Link>
-            <Link to="/">Intra in cont</Link>
+            <Link to="/">Conectare</Link>
             <Button bg="teal" color="white" _hover={{ bg: "teal.500"}} >
             <Link to="/">Inregistreaza-te</Link>
             </Button>

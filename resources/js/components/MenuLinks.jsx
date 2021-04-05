@@ -8,16 +8,15 @@ import {
     DrawerContent,
     DrawerCloseButton,
     DrawerHeader,
-    Button
+    Button,
 } from "@chakra-ui/react";
 import ThemeToggler from "./ThemeToggler";
-
 const MenuLinks = ({ isOpen, toggle }) => {
     const Links = () => (
         <>
             <Link to="/">Acasa</Link>
             <Link to="/about">Despre noi</Link>
-            <Link to="/">Conectare</Link>
+            <Link to="/login">Conectare</Link>
             <Button bg="teal" color="white" _hover={{ bg: "teal.500"}} >
             <Link to="/">Inregistreaza-te</Link>
             </Button>

@@ -29,4 +29,5 @@ Route::group([
 ], function () {
     Route::post('/login', [UserController::class, 'login'])->name("login");
     Route::post('/register', [UserController::class, 'register'])->name("register");
+    Route::middleware('auth:sanctum')->post('/account', [UserController::class, 'user'])->name("user");
 });

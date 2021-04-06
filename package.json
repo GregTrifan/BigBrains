@@ -14,7 +14,7 @@
         "@babel/preset-env": "^7.13.10",
         "@babel/preset-react": "^7.12.13",
         "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
-        "axios": "^0.21",
+        "axios": "^0.21.1",
         "enzyme": "^3.11.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
@@ -32,10 +32,13 @@
         "@emotion/styled": "^11.1.5",
         "@fontsource/open-sans": "^4.2.2",
         "@fontsource/varela": "^4.2.2",
+        "@reduxjs/toolkit": "^1.5.1",
         "babel-jest": "^26.6.3",
         "framer-motion": "^3.10.5",
         "jest": "^26.6.3",
         "react-icons": "^4.2.0",
-        "react-router-dom": "^5.2.0"
+        "react-redux": "^7.2.3",
+        "react-router-dom": "^5.2.0",
+        "universal-cookie": "^4.0.4"
     }
 }

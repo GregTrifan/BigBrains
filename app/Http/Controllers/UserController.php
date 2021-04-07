@@ -69,6 +69,6 @@ class UserController extends Controller
     }
     public function about(Request $request)
     {
-        return $request->user();
+        return response()->json(["data" => $request->user()]);
     }
 }

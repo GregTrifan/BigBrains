@@ -10,11 +10,11 @@ async function Account() {
         withCredentials: true,
         headers: {
             "Accept": "application-json",
-            "X-Requested-With": "XMLHttpRequest",
-            Autorization: `Bearer ${token}`
+            "Authorization": `Bearer ${token}`
         }
     });
     try {
+        await Client.get('/sanctum/csrf-cookie');
         const res = await Client.post("/api/info");
         return res.data;
     }

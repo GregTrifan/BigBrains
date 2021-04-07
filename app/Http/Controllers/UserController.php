@@ -67,4 +67,8 @@ class UserController extends Controller
             return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! invalid password"]);
         }
     }
+    public function about(Request $request)
+    {
+        return $request->user();
+    }
 }

@@ -15,7 +15,7 @@ use App\Http\Controllers\SpaController;
 
 Route::fallback([SpaController::class, 'lost'])->name("lost");
 Route::group([
-    "as" => "spa"
+    "as" => "spa."
 ], function () {
     Route::get('/', [SpaController::class, 'index'])->name("index");
     Route::get('/about', [SpaController::class, 'index'])->name("about");

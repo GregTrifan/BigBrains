@@ -11,11 +11,11 @@ async function Account() {
         headers: {
             "Accept": "application-json",
             "X-Requested-With": "XMLHttpRequest",
-            autorization: `Bearer ${token}`
+            Autorization: `Bearer ${token}`
         }
     });
     try {
-        const res = await Client.post("/api/account");
+        const res = await Client.post("/api/info");
         return res.data;
     }
     catch {

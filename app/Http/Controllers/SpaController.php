@@ -12,6 +12,6 @@ class SpaController extends Controller
     }
     public function lost()
     {
-        return response()->view('spa',[],404);
+        return response()->view('spa', [], 404);
     }
 }

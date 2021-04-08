@@ -11,18 +11,37 @@ import {
     Button,
 } from "@chakra-ui/react";
 import ThemeToggler from "./ThemeToggler";
+import { useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom'
+import {
+    selectUser
+  } from "../storage/user";
 const MenuLinks = ({ isOpen, toggle }) => {
-    const Links = () => (
-        <>
-            <Link to="/">Acasa</Link>
-            <Link to="/about">Despre noi</Link>
-            <Link to="/login">Conectare</Link>
-            <Button bg="teal" color="white" _hover={{ bg: "teal.500"}} >
-            <Link to="/">Inregistreaza-te</Link>
-            </Button>
-            <ThemeToggler />
-        </>
-    );
+    const history = useHistory();
+    const user = useSelector(selectUser);
+    const Links = () => {
+        if (!user) {
+            return (
+                <>
+                    <Link to="/">Acasa</Link>
+                    <Link to="/about">Despre noi</Link>
+                    <Link to="/login">Conectare</Link>
+                    <Button bg="teal" color="white" _hover={{ bg: "teal.500" }} onClick={() => history.push('/register')}>
+                        Inregistreaza-te
+                    </Button>
+                    <ThemeToggler />
+                </>
+            )
+        }
+        else return (
+            <>
+                <Link to="/">Acasa</Link>
+                <Link to="/about">Despre noi</Link>
+                <Link to="/account">Cont</Link>
+                <ThemeToggler />
+            </>)
+    };
+
     return (
         <>
             <Box display={{ base: "none", md: "block" }}>

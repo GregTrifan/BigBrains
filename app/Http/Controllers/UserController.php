@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Exception;
+use Illuminate\Database\QueryException;
 
 class UserController extends Controller
 {
@@ -29,16 +31,28 @@ class UserController extends Controller
 
         $inputs = $request->all();
         $inputs["password"] = Hash::make($request->password);
-        $user = User::create($inputs);
+        try {
+            $user = User::create($inputs);
 
-        if (!is_null($user)) {
-            return response()->json([
-                "status" => "success",
-                "message" => "Success! registration completed",
-                "data" => $user
-            ]);
-        } else {
-            return response()->json(["status" => "failed", "message" => "Registration failed!"]);
+            if (!is_null($user)) {
+                return response()->json([
+                    "status" => "success",
+                    "message" => "Success! registration completed",
+                    "data" => $user
+                ]);
+            } else {
+                return response()->json(["status" => "failed", "message" => "Registration failed!"]);
+            }
+        } catch (Exception $e) {
+            $impliesEmail = preg_match("/users\.email/", $e);
+            $impliesName = preg_match("/users\.name/", $e);
+            if ($impliesName || $impliesEmail) {
+                $fault = $impliesEmail ? "email" : "name";
+
+                return response()->json(["error" => "$fault is already used"]);
+            } else {
+                return response()->json(["error" => "Internal Problems", $e], 500);
+            }
         }
     }
     /**
@@ -70,5 +84,18 @@ class UserController extends Controller
     public function about(Request $request)
     {
         return response()->json(["data" => $request->user()]);
+    }
+
+    /**
+     * Logout User
+     * @param Request
+     * @return Message
+     */
+    public function logout(Request $request)
+    {
+        $user = request()->user(); //or Auth::user()
+        // Revoke current user token
+        $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
+        return response()->json(["msg" => "Logged out"]);
     }
 }

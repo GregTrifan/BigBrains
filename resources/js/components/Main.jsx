@@ -7,8 +7,7 @@ const Main = (props) => {
     const dispatch = useDispatch();
     const CheckAccount = useCallback(async () => {
         const result = await Account();
-        console.log(result);
-         if (result!=="Guest") {
+         if (result!==false) {
           dispatch(store(String(result.data.name)));
          }
     });

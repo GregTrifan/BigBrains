@@ -18,15 +18,16 @@ use App\Http\Controllers\UserController;
 
 Route::group([
     "prefix" => "/posts",
-    "as" => "posts"
+    "as" => "posts."
 ], function () {
     Route::get('/', [PostController::class, 'index'])->name("show");
     Route::post('/add', [PostController::class, 'create'])->name("add");
     Route::get('/show/{id}', [PostController::class, 'show'])->name("show")->where("id", "\d+");
 });
 Route::group([
-    "as" => "user"
+    "as" => "user."
 ], function () {
     Route::post('/login', [UserController::class, 'login'])->name("login");
     Route::post('/register', [UserController::class, 'register'])->name("register");
+    Route::post('/info', [UserController::class, 'about'])->middleware('auth:sanctum');
 });

@@ -67,19 +67,8 @@ class UserController extends Controller
             return response()->json(["status" => "failed", "success" => false, "message" => "Whoops! invalid password"]);
         }
     }
-
-    /**
-     * Get user details
-     * @param Request
-     * @return Data || Unauthorised
-     */
-    public function user()
+    public function about(Request $request)
     {
-        $user = Auth::user();
-        if (!is_null($user)) {
-            return response()->json(["status" => "success", "data" => $user]);
-        } else {
-            return response()->json(["status" => "failed", "message" => "Oops! You're not logged in!"]);
-        }
+        return response()->json(["data" => $request->user()]);
     }
 }

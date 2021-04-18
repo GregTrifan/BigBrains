@@ -85,7 +85,34 @@ class UserController extends Controller
     {
         return response()->json(["data" => $request->user()]);
     }
+    /**
+     * Update User
+     */
+    public function update(Request $request)
+    {
+        // Get current user
+        $userId = Auth::id();
+        $user = User::findOrFail($userId);
 
+        // Validate the data submitted by user
+        $validator = Validator::make($request->all(), [
+            'description' => 'required'
+        ]);
+
+        // if fails redirects back with errors
+        if ($validator->fails()) {
+            return response()->json(["status" => "failed", "validation_errors" => $validator->errors()]);
+        }
+
+        // Fill user model
+        $user->fill([
+            'description' => $request->description
+        ]);
+
+        // Save user to database
+        $user->save();
+        return response()->json(["status" => "success", "data" => $user]);
+    }
     /**
      * Logout User
      * @param Request

@@ -31,6 +31,7 @@
         "@emotion/react": "^11.1.5",
         "@emotion/styled": "^11.1.5",
         "@fontsource/cairo": "^4.2.3",
+        "@fontsource/caveat": "^4.2.2",
         "@fontsource/open-sans": "^4.2.2",
         "@fontsource/varela": "^4.2.2",
         "@reduxjs/toolkit": "^1.5.1",

@@ -8,7 +8,7 @@ const Main = (props) => {
     const CheckAccount = useCallback(async () => {
         const result = await Account();
          if (result!==false) {
-          dispatch(store(String(result.data.name)));
+          dispatch(store(result.data));
          }
     });
     useEffect(() => {

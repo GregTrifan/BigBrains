@@ -20,7 +20,7 @@ const MenuLinks = ({ isOpen, toggle }) => {
     const history = useHistory();
     const user = useSelector(selectUser);
     const Links = () => {
-        if (!user) {
+        if (!user.account) {
             return (
                 <>
                     <Link to="/">Acasa</Link>

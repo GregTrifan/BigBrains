@@ -4,10 +4,14 @@ import { useColorModeValue } from "@chakra-ui/color-mode";
 import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Box, Center, Heading } from "@chakra-ui/layout";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import userLogin from "../utils/userLogin";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux";
+import check from "../services/check";
+import { useHistory } from "react-router";
+
 const Login = () => {
+    const history = useHistory();
     const toast = useToast()
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
@@ -15,6 +19,11 @@ const Login = () => {
     const cardBg = useColorModeValue("teal.100", "teal.600");
     const buttonBg = useColorModeValue("teal.200", "teal.500");
     const [Sent, setSent] = useState(false);
+    useEffect(() => {
+        if (check(dispatch)) {
+            history.push('/');
+        }
+    },[])
     const handleSubmit = async e => {
         e.preventDefault();
         setSent(true);
@@ -42,6 +51,9 @@ const Login = () => {
             isClosable: true
             })
             setSent(false);
+            setTimeout(() => {
+                history.push("/account");
+            },1000)
         }
 
 

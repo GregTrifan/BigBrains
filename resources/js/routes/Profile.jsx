@@ -1,4 +1,4 @@
-import React, { Fragment,useState } from "react";
+import React, { Fragment,useState,useEffect } from "react";
 import "@fontsource/caveat";
 import {
     Heading, Box,useToast, Text, Button, Center, Stack, Feature,ModalCloseButton,
@@ -6,23 +6,32 @@ import {
     Textarea,Input
 } from "@chakra-ui/react";
 
-import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control";
+import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { useSelector,useDispatch } from "react-redux";
 import {
     selectUser
 } from "../storage/user";
 import userUpdate from "../utils/userUpdate";
+import check from "../services/check";
+import { useHistory } from "react-router";
+import userLogout from "../utils/userLogout";
 /**
  * User Profile preview and options
  * @returns Component
  */
 const Profile = () => {
+    const history = useHistory();
     const toast = useToast()
     const [Sent, setSent] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector(selectUser);
     const [description, setDescription] = useState(user.account.description);
     const { isOpen, onOpen, onClose } = useDisclosure();
+    useEffect(() => {
+        if (!check(dispatch)) {
+            history.push('/');
+        }
+    },[])
     const Feature = ({ title, desc}) => {
         return (
       <Box>
@@ -91,7 +100,7 @@ const Profile = () => {
             <Center mt={20}>
             <Stack direction={["column","row"]} spacing={4}>
             <Button colorScheme="blue" variant="outline" onClick={onOpen}>Editeaza Profilul</Button>
-                <Button colorScheme="red">Deconectare</Button>
+                    <Button colorScheme="red" onClick={() => { userLogout(dispatch, history) }}>Deconectare</Button>
             </Stack>
             </Center>
             {/*Modal For Profile Update */}

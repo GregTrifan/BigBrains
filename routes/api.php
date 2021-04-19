@@ -31,4 +31,5 @@ Route::group([
     Route::post('/register', [UserController::class, 'register'])->name("register");
     Route::post('/info', [UserController::class, 'about'])->middleware('auth:sanctum');
     Route::post('/update', [UserController::class, 'update'])->middleware('auth:sanctum');
+    Route::post('/logout', [UserController::class, 'logout'])->middleware("auth:sanctum");
 });

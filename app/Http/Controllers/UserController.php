@@ -123,6 +123,6 @@ class UserController extends Controller
         $user = request()->user(); //or Auth::user()
         // Revoke current user token
         $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
-        return response()->json(["msg" => "Logged out"]);
+        return response()->json(["status" => "success"]);
     }
 }

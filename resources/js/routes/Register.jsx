@@ -4,10 +4,14 @@ import { useColorModeValue } from "@chakra-ui/color-mode";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Box, Center, Heading } from "@chakra-ui/layout";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import userRegister from "../utils/userRegister";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux"
+import check from "../services/check";
+import { useHistory } from "react-router";
+
 const Register = () => {
+    const history = useHistory();
     const toast = useToast()
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
@@ -16,6 +20,11 @@ const Register = () => {
     const cardBg = useColorModeValue("teal.100", "teal.600");
     const buttonBg = useColorModeValue("teal.200", "teal.500");
     const [Sent, setLoading] = useState(false);
+    useEffect(() => {
+        if (check(dispatch)) {
+            history.push('/');
+        }
+    },[])
     const handleSubmit = async e => {
         e.preventDefault();
         setLoading(true);

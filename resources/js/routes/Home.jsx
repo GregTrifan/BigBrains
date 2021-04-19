@@ -41,7 +41,7 @@ const Home = () => {
                         <Spacer/>
                 <div>
                     <Center>
-                        <Text fontSize="3xl" textAlign={"center"}  fontWeight="1000" fontFamily="cairo" color="white"> Descarca aplicatia BigBrain</Text>
+                        <Text fontSize="3xl" textAlign={"center"}  fontWeight="1000" fontFamily="cairo" color="white"> Descarca aplicatia Big Brain</Text>
                     </Center>
                         <Spacer/>
                     <Center>

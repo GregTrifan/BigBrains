@@ -1,6 +1,7 @@
 import { Img, Center, Text, Link  , Spacer, HStack} from "@chakra-ui/react";
 import { GoVerified } from "react-icons/go";
 import { useHistory } from 'react-router-dom';
+import { AiFillFacebook,AiOutlineTwitter } from "react-icons/ai";
 import "@fontsource/cairo"
 
 const Home = () => {
@@ -35,7 +36,11 @@ const Home = () => {
                         <Text fontSize="3xl" textAlign={"center"} fontWeight="1000" fontFamily="cairo" color="white">Social media</Text>
                     </Center>
                     <Center>
-                        <Link href="./About" textAlign={"center"}  fontSize="xl" fontWeight="100" fontFamily="cairo" color="White">Facebook, Twitter</Link>
+                        <Link href="https://facebook.com" textAlign={"center"} fontSize="2xl"
+                            fontWeight="100" fontFamily="cairo" _hover={{ color: "blue.400" }} color="White"><AiFillFacebook /></Link>
+
+                        <Link href="https://twitter.com" textAlign={"center"} fontSize="2xl"
+                            fontWeight="100" fontFamily="cairo" _hover={{ color: "blue.300" }} color="White"><AiOutlineTwitter /></Link>
                     </Center>
                 </div>
                         <Spacer/>

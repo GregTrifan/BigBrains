@@ -35,7 +35,7 @@ const MenuLinks = ({ isOpen, toggle }) => {
         }
         else return (
             <>
-                <Link to="/">Acasa</Link>
+                <Link to="/feed">Feed</Link>
                 <Link to="/about">Despre noi</Link>
                 <Link to="/account">Cont</Link>
                 <ThemeToggler />

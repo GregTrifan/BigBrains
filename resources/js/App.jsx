@@ -7,6 +7,7 @@ import NotFound from "./routes/NotFound";
 import Login from "./routes/Login";
 import Register from "./routes/Register";
 import Profile from "./routes/Profile";
+import Feed from "./routes/Feed";
 const App = () => {
     return (
         <Router>
@@ -17,6 +18,7 @@ const App = () => {
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/account" component={Profile} />
+                    <Route path="/feed" component={Feed}/>
                     <Route component={NotFound} />
                 </Switch>
             </Main>

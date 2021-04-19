@@ -98,7 +98,7 @@ const Profile = () => {
             <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader>Modal Title</ModalHeader>
+                <ModalHeader>Editare Profil</ModalHeader>
                     <ModalCloseButton />
                     <form onSubmit={handleSubmit}>
                 <ModalBody>

@@ -14,7 +14,7 @@ const userLogin = async (email, password,dispatch) => {
     const Res = await apiClient.post('/api/login', Body);
     const { data } = Res;
     if (data.status === "success") {
-        dispatch(store(String(data.data.name)));
+        dispatch(store(data.data));
         // Store Credentials
         cookies.set("account", data.token);
         return "Success"

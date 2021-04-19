@@ -21,4 +21,5 @@ Route::group([
     Route::get('/about', [SpaController::class, 'index'])->name("about");
     Route::get('/login', [SpaController::class, 'index'])->name("login");
     Route::get('/register', [SpaController::class, 'index'])->name("register");
+    Route::get('/account', [SpaController::class, 'index'])->name("account");
 });

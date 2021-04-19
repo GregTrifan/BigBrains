@@ -10,7 +10,7 @@ const ThemeToggler = () => {
             color="teal.400"
             variant="ghost"
         >
-            {colorMode === "light" ? "Go Dark 🌙" : "Go Light 🌞"}
+            {colorMode === "light" ? "🌙" : "🌞"}
         </Button>
     );
 };

@@ -16,10 +16,10 @@ class Posts extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('content');
             $table->integer('votes')->default(0);
-            $table->integer('views')->default(0);
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

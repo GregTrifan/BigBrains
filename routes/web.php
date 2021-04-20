@@ -22,4 +22,5 @@ Route::group([
     Route::get('/login', [SpaController::class, 'index'])->name("login");
     Route::get('/register', [SpaController::class, 'index'])->name("register");
     Route::get('/account', [SpaController::class, 'index'])->name("account");
+    Route::get('/feed', [SpaController::class, 'index'])->name("feed");
 });

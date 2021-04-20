@@ -11,6 +11,10 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
+    public function posts()
+    {
+        return $this->hasMany('\App\Models\Post');
+    }
 
     /**
      * The attributes that are mass assignable.

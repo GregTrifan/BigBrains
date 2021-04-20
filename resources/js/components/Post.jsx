@@ -1,17 +1,17 @@
 import React from 'react'
-import { Box, Image, Text, Center } from "@chakra-ui/react"
-
-const Post = () => {
+import { Box, Text, Center, Button, useBoolean} from "@chakra-ui/react"
+import { AiOutlineFire } from "react-icons/ai";
+const Post = ({ question,count }) => {
+    const [pressed, setPress] = useBoolean();
     return (
         <div>
             <Center paddingTop="40px">
-            <Box width="60%" borderWidth="1px" borderRadius="lg" overflow="hidden">
-                <Text padding="10px" fontWeight="extrabold">Username</Text>
-                <Text padding="10px">Test pentru Evaluarea Nationala clasa a VIII-a</Text>
-                <Center paddingBottom="20px">
-                <Image padding="10px" width="60%" src="book.jpg"></Image>
-                </Center>
-            </Box>
+            <Box width="60%" p={2.5} borderWidth="1px" borderRadius="lg" overflow="hidden">
+                    <Text padding="10px">{question}</Text>
+                    <Button variant="outline" onClick={() => setPress.toggle()} _hover={{ color: "red.300" }}
+                        color={pressed ? "red" : false}
+                        leftIcon={<AiOutlineFire />}>{count}</Button>
+                </Box>
             </Center>
         </div>
     )

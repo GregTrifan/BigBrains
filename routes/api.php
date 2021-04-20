@@ -21,7 +21,7 @@ Route::group([
     "as" => "posts."
 ], function () {
     Route::get('/', [PostController::class, 'index'])->name("show");
-    Route::post('/add', [PostController::class, 'create'])->name("add");
+    Route::post('/add', [PostController::class, 'create'])->name("add")->middleware("auth:sanctum");
     Route::get('/show/{id}', [PostController::class, 'show'])->name("show")->where("id", "\d+");
 });
 Route::group([

@@ -52,7 +52,7 @@ const Login = () => {
             })
             setSent(false);
             setTimeout(() => {
-                history.push("/account");
+                history.push("/feed");
             },1000)
         }
 

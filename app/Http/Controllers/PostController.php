@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -16,7 +18,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::select('title', 'content', 'votes')->paginate(10);
+        $posts = Post::Orderby('created_at', 'desc')->select('title', 'content', 'votes')->paginate(10);
         return response()->json($posts);
     }
     /**
@@ -26,16 +28,18 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
+        $userId = Auth::id();
         $validator = Validator::make($request->all(), [
             'title' => 'required',
-            'content' => 'required'
         ]);
         if ($validator->fails()) {
             return response()->json(['err' => $validator->errors()], 400);
         }
-        $input = $request->all();
-        $post = Post::create($input);
-        return response()->json(["status" => "Post uploaded sucessfully", "id" => $post->id]);
+        $post = new Post();
+        $post->title = $request->title;
+        $post->user_id = $userId;
+        $post->save();
+        return response()->json(["status" => "success", "id" => $post->id]);
     }
     /**
      * Show a specific Post

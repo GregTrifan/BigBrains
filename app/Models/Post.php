@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'content', 'votes', 'views'];
+    public function user()
+    {
+        return $this->belongsTo("App\Models\User");
+    }
+    protected $fillable = ['title', "user_id", 'votes', 'views'];
     use HasFactory;
 }

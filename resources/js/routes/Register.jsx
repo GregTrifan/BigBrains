@@ -4,10 +4,14 @@ import { useColorModeValue } from "@chakra-ui/color-mode";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Box, Center, Heading } from "@chakra-ui/layout";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import userRegister from "../utils/userRegister";
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux"
+import check from "../services/check";
+import { useHistory } from "react-router";
+
 const Register = () => {
+    const history = useHistory();
     const toast = useToast()
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
@@ -16,13 +20,18 @@ const Register = () => {
     const cardBg = useColorModeValue("teal.100", "teal.600");
     const buttonBg = useColorModeValue("teal.200", "teal.500");
     const [Sent, setLoading] = useState(false);
+    useEffect(() => {
+        if (check(dispatch)) {
+            history.push('/');
+        }
+    },[])
     const handleSubmit = async e => {
         e.preventDefault();
         setLoading(true);
         if (password.length < 6) {
             setLoading(false);
             return toast({
-                title: "Parola trebuie sa aiba minim 6 caractere",
+                title: "Parola trebuie să aibă minim 6 caractere",
                 status: "warning",
                 isClosable: true
             });
@@ -46,7 +55,7 @@ const Register = () => {
         }
         if (result === "Error") {
             toast({
-            title: "Cateva erori interne, incearca mai tarziu",
+            title: "Câteva erori interne, încearcă mai târziu",
             status: "error",
             isClosable: true,
             });
@@ -67,7 +76,7 @@ const Register = () => {
         <>
             <Center>
                 <Box bg={cardBg} borderRadius={30} padding={30} w={["90%", "60%",  500]}>
-                    <Center><Heading marginBottom="2">Inregistrare</Heading></Center>
+                    <Center><Heading marginBottom="2">Înregistrare</Heading></Center>
                     <form onSubmit={handleSubmit}>
                     <FormControl isRequired>
                         <FormLabel>Adresa de email</FormLabel>
@@ -97,7 +106,7 @@ const Register = () => {
                     </FormControl>
                     <Center>
                     <Button width="50%" mt={4} type="submit" bg={buttonBg} isLoading={Sent}>
-                            Creeaza cont
+                    Creează contul
                     </Button>
                         </Center>
                         </form>

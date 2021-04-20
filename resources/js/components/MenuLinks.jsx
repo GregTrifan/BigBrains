@@ -23,11 +23,11 @@ const MenuLinks = ({ isOpen, toggle }) => {
         if (!user.account) {
             return (
                 <>
-                    <Link to="/">Acasa</Link>
+                    <Link to="/">Acasă</Link>
                     <Link to="/about">Despre noi</Link>
                     <Link to="/login">Conectare</Link>
                     <Button bg="teal" color="white" _hover={{ bg: "teal.500" }} onClick={() => history.push('/register')}>
-                        Inregistreaza-te
+                    Înregistrează-te
                     </Button>
                     <ThemeToggler />
                 </>

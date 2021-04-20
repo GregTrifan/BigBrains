@@ -1,5 +1,12 @@
 import { Text, Center } from "@chakra-ui/layout";
-import { Avatar, Wrap, WrapItem, Stack } from "@chakra-ui/react"
+import { Avatar, Wrap, WrapItem, Stack, Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverHeader,
+    PopoverBody,
+    PopoverFooter,
+    PopoverArrow,
+    PopoverCloseButton,  } from "@chakra-ui/react"
 import "@fontsource/cairo"
 
 const About = () => {
@@ -11,7 +18,6 @@ const About = () => {
         <Center paddingTop="50px">
             <Text textAlign={"center"} fontSize="2xl" fontWeight="100" fontFamily="cairo">Cine suntem?</Text>
         </Center>
-
         <Center paddingTop="25px">
         <Wrap spacing="50px">
             <WrapItem>

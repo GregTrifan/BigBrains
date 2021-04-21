@@ -1,5 +1,4 @@
 import { Input, Box, Center, Text, HStack, Button, Link, FormControl,useToast  } from "@chakra-ui/react"
-import { FaCamera, FaPaperclip } from "react-icons/fa";
 import React, { useState } from 'react';
 import Post from "../components/Post";
 import Skele from "../components/Skele";
@@ -45,45 +44,39 @@ const Feed = () => {
             setSent(false);
         }
     }
-    const loadPosts = (count) => {
-        apiClient.get(`/api/posts?page=${count}`)
-            .then(res => res.data)
-            .then(sol => { if(sol.current_page===sol.last_page)setLoading(false); return sol.data })
-            .then(data => setPosts([...data,...posts]));
-
+    const loadPosts = async(count) => {
+        const Posts = await apiClient.get(`/api/posts?page=${count}`);
+        setLoading(Posts.data.current_page < Posts.data.last_page);
+        const items = Posts.data.data;
+        setPosts([...posts,...items]);
     };
-    var items = [];
-    posts.map((post, i) => {
-        items.push(
-            <div key={i}>
-                <Post question={post.title}  count={post.votes}/>
-            </div>
-        )
-    })
+    const items = posts.map((post, i) => <Post question={post.title} key={i}  count={post.votes}/>
+    )
     return (
         <div>
             <Center>
-                <form onSubmit={addPost}>
-                <Box width="80 %" borderWidth="1px" borderRadius="lg" overflow="hidden">
+
+                     <Box width="60%" borderWidth="1px" borderRadius="lg" overflow="hidden">
+                    <form onSubmit={addPost}>
                     <FormControl>
                             <Input isRequired placeholder="Postează o intrebare" onChange={e => setQuestion(e.currentTarget.value)} />
                     </FormControl>
                         <HStack padding="10px" spacing="20px">
                             <Button _hover={{ bg: "teal.500" }} type="submit" isLoading={Sent}>Postează</Button>
                         </HStack>
-
-                    </Box>
                     </form>
+                    </Box>
+
         </Center>
 
             <InfiniteScroll
-            pageStart={0}
+            pageStart={-1}
             loadMore={loadPosts.bind(this)}
             initialLoad={true}
             hasMore={loading}
-            loader={<Skele/>}
+            loader={<><Skele/><Skele/><Skele/></>}
             >
-                    {items}
+                    { items }
             </InfiniteScroll>
         </div>
     )
